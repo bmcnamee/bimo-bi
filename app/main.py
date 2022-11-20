@@ -23,7 +23,7 @@ _base = alt.Chart(_df).encode(
     alt.X("length_of_stay",
           axis=alt.Axis(title="Length of Stay"))
 )
-_bar = _base.mark_bar(color='#4c78a8').encode(
+_bar = _base.mark_bar(color='#4c78a8', size=10).encode(
     alt.Y("episode_id",
           axis=alt.Axis(title="Episode Count", titleColor="#4c78a8"))
 )

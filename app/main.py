@@ -44,7 +44,9 @@ _chart = alt.layer(_bar, _line).resolve_scale(y="independent")
 st.altair_chart(_chart, use_container_width=True)
 
 st.markdown(f"## By Comorbidity Count")
-_df = df.groupby("comorbidity_count", as_index=False).agg({"episode_id": "count", "satisfaction_rating": "mean"})
+_df = df[df["hospital_name"].isin(hosp_names_selected)] \
+    .groupby("comorbidity_count", as_index=False) \
+    .agg({"episode_id": "count", "satisfaction_rating": "mean"})
 _base = alt.Chart(_df).encode(
     alt.X("comorbidity_count",
           axis=alt.Axis(title="Comorbidity Count"))
@@ -61,7 +63,9 @@ _chart = alt.layer(_bar, _line).resolve_scale(y="independent")
 st.altair_chart(_chart, use_container_width=True)
 
 st.markdown(f"## By Age")
-_df = df.groupby("age", as_index=False).agg({"episode_id": "count", "satisfaction_rating": "mean"})
+_df = df[df["hospital_name"].isin(hosp_names_selected)] \
+    .groupby("age", as_index=False) \
+    .agg({"episode_id": "count", "satisfaction_rating": "mean"})
 _base = alt.Chart(_df).encode(
     alt.X("age",
           axis=alt.Axis(title="Age"))
@@ -78,7 +82,9 @@ _chart = alt.layer(_bar, _line).resolve_scale(y="independent")
 st.altair_chart(_chart, use_container_width=True)
 
 st.markdown(f"## By Gender")
-_df = df.groupby("gender", as_index=False).agg({"episode_id": "count", "satisfaction_rating": "mean"})
+_df = df[df["hospital_name"].isin(hosp_names_selected)] \
+    .groupby("gender", as_index=False) \
+    .agg({"episode_id": "count", "satisfaction_rating": "mean"})
 _base = alt.Chart(_df).encode(
     alt.X("gender",
           axis=alt.Axis(title="Gender"))

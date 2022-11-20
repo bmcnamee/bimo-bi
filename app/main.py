@@ -58,7 +58,10 @@ _bar = _base.mark_bar(color='#4c78a8', size=20).encode(
     alt.Y("episode_id",
           axis=alt.Axis(title="Episode Count", titleColor="#4c78a8"))
 )
-_line = _base.mark_line(color='#F18727').encode(
+_line = _base.mark_line(
+    color="#F18727",
+    point=alt.OverlayMarkDef(color="#F18727")
+).encode(
     alt.Y("satisfaction_rating",
           axis=alt.Axis(title="Average Satisfaction Rating", titleColor="#F18727"))
 )
@@ -77,7 +80,10 @@ _bar = _base.mark_bar(color='#4c78a8').encode(
     alt.Y("episode_id",
           axis=alt.Axis(title="Episode Count", titleColor="#4c78a8"))
 )
-_line = _base.mark_line(color='#F18727').encode(
+_line = _base.mark_line(
+    color="#F18727",
+    point=alt.OverlayMarkDef(color="#F18727")
+).encode(
     alt.Y("satisfaction_rating",
           axis=alt.Axis(title="Average Satisfaction Rating", titleColor="#F18727"))
 )
@@ -96,7 +102,10 @@ _bar = _base.mark_bar(color='#4c78a8').encode(
     alt.Y("episode_id",
           axis=alt.Axis(title="Episode Count", titleColor="#4c78a8"))
 )
-_line = _base.mark_line(color='#F18727').encode(
+_line = _base.mark_line(
+    color="#F18727",
+    point=alt.OverlayMarkDef(color="#F18727")
+).encode(
     alt.Y("satisfaction_rating",
           axis=alt.Axis(title="Average Satisfaction Rating", titleColor="#F18727"))
 )

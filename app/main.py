@@ -2,6 +2,7 @@ import streamlit as st  # loaded by streamlit cloud
 import pandas as pd  # loaded by streamlit cloud
 import gspread
 from google.oauth2 import service_account  # module name is google-auth
+import altair as alt
 
 # credentials not saved to Github. Saved in settings in streamlit cloud
 credentials = service_account.Credentials.from_service_account_info(
@@ -30,3 +31,11 @@ st.bar_chart(
     x="age",
     y="episode_id",
 )
+st.markdown(f"## By Age (Altair)")
+_df = df.groupby("age", as_index=False).agg({"episode_id": "count"})
+_chart = alt.Chart(_df).mark_bar().encode(
+    x="age",
+    y="episode_id",
+)
+st.altair_chart(_chart)
+

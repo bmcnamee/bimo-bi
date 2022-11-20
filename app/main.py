@@ -16,6 +16,11 @@ ws_name = "Sheet1"
 ws = sh.worksheet(ws_name)
 df = pd.DataFrame(ws.get_all_records())
 
+st.sidebar.multiselect(
+    "Select Hospitals",
+    ["Hospital A", "Hospital B"],
+)
+
 st.markdown(f"# Episode of Care Count")
 st.markdown(f"## By Length of Stay")
 _df = df.groupby("length_of_stay", as_index=False).agg({"episode_id": "count", "satisfaction_rating": "mean"})

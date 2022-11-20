@@ -16,12 +16,9 @@ ws = sh.worksheet(ws_name)
 df = pd.DataFrame(ws.get_all_records())
 
 st.markdown(f"# Episode of Care Count by Length of Stay")
-_df = df.groupby("length_of_stay").agg({"episode_id": "count"})
+_df = df.groupby("length_of_stay", as_index=False).agg({"episode_id": "count"})
 st.bar_chart(
     _df,
     x="length_of_stay",
     y="episode_id",
 )
-st.markdown(f"{type(df)}")
-st.markdown(f"{df.shape}")
-st.dataframe(df.head())

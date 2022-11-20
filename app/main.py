@@ -40,7 +40,7 @@ _base = alt.Chart(_df).encode(
     alt.X("comorbidity_count",
           axis=alt.Axis(title="Comorbidity Count"))
 )
-_bar = _base.mark_bar(color='#4c78a8').encode(
+_bar = _base.mark_bar(color='#4c78a8', size=20).encode(
     alt.Y("episode_id",
           axis=alt.Axis(title="Episode Count", titleColor="#4c78a8"))
 )

@@ -16,9 +16,11 @@ ws_name = "Sheet1"
 ws = sh.worksheet(ws_name)
 df = pd.DataFrame(ws.get_all_records())
 
+hosp_names_list = df["hospital_name"].unique()
 st.sidebar.multiselect(
     "Select Hospitals",
-    ["Hospital A", "Hospital B"],
+    hosp_names_list,
+    hosp_names_list
 )
 
 st.markdown(f"# Episode of Care Count")

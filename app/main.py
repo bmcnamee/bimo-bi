@@ -37,5 +37,5 @@ _chart = alt.Chart(_df).mark_bar().encode(
     x="age",
     y="episode_id",
 )
-st.altair_chart(_chart)
+st.altair_chart(_chart, use_container_width=True)
 

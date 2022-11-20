@@ -16,8 +16,8 @@ ws_name = "Sheet1"
 ws = sh.worksheet(ws_name)
 df = pd.DataFrame(ws.get_all_records())
 
-hosp_names_list = df["hospital_name"].unique()
-st.sidebar.multiselect(
+hosp_names_list = sorted(df["hospital_name"].unique())
+hosp_names_selected = st.sidebar.multiselect(
     "Select Hospitals",
     hosp_names_list,
     hosp_names_list
@@ -25,7 +25,9 @@ st.sidebar.multiselect(
 
 st.markdown(f"# Episode of Care Count")
 st.markdown(f"## By Length of Stay")
-_df = df.groupby("length_of_stay", as_index=False).agg({"episode_id": "count", "satisfaction_rating": "mean"})
+_df = df[df["hospital_name"].isin(hosp_names_selected)] \
+    .groupby("length_of_stay", as_index=False) \
+    .agg({"episode_id": "count", "satisfaction_rating": "mean"})
 _base = alt.Chart(_df).encode(
     alt.X("length_of_stay",
           axis=alt.Axis(title="Length of Stay"))

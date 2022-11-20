@@ -67,3 +67,20 @@ _line = _base.mark_line(color='#F18727').encode(
 )
 _chart = alt.layer(_bar, _line).resolve_scale(y="independent")
 st.altair_chart(_chart, use_container_width=True)
+
+st.markdown(f"## By Gender")
+_df = df.groupby("gender", as_index=False).agg({"episode_id": "count", "satisfaction_rating": "mean"})
+_base = alt.Chart(_df).encode(
+    alt.X("gender",
+          axis=alt.Axis(title="Gender"))
+)
+_bar = _base.mark_bar(color='#4c78a8').encode(
+    alt.Y("episode_id",
+          axis=alt.Axis(title="Episode Count", titleColor="#4c78a8"))
+)
+_line = _base.mark_line(color='#F18727').encode(
+    alt.Y("satisfaction_rating",
+          axis=alt.Axis(title="Average Satisfaction Rating", titleColor="#F18727"))
+)
+_chart = alt.layer(_bar, _line).resolve_scale(y="independent")
+st.altair_chart(_chart, use_container_width=True)

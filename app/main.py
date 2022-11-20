@@ -36,5 +36,6 @@ _df = df.groupby("age", as_index=False).agg({"episode_id": "count", "satisfactio
 _base = alt.Chart(_df).encode(x="age")
 _bar = _base.mark_bar().encode(y="episode_id")
 _line = _base.mark_line().encode(y="satisfaction_rating")
-_chart = (_bar + _line).properties(width=600)
+# _chart = (_bar + _line).properties(width=600)
+_chart = (_bar + _line)
 st.altair_chart(_chart, use_container_width=True)
